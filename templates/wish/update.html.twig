@@ -1,0 +1,32 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Modifier un wish{% endblock %}
+
+{% block content %}
+
+<div class="row mt-5 text-center">
+    <h2>Modifier un wish</h2>
+</div>
+
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <form action="" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Titre</label>
+                <input type="text" class="form-control"  value="{{wish.title}}" name="title" id="title" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3">{{wish.description}}</textarea>
+            </div> 
+            <div class="mb-3">
+                <label for="author" class="form-label">Auteur</label>
+                <input type="text" class="form-control" value="{{wish.author}}" name="author" id="author" placeholder="">
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Modifier</button>                                   
+        </form>
+    </div>
+</div>
+
+{% endblock %}

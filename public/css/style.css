@@ -1,0 +1,15 @@
+main{
+    min-height: 90vh;
+    font-family: 'Sofia';font-size: 22px;
+}
+
+footer{
+    text-align: center;
+    background-color: #292828;  
+    color:#fff;
+    padding: 10px;  
+}
+
+.navbar-brand img {
+    width: 40px;
+}

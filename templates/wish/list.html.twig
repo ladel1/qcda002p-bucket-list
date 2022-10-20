@@ -1,0 +1,44 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Wish Liste{% endblock %}
+
+{% block content %}
+
+<div class="row mt-5 text-center">
+        <h2>Wish Liste</h2>
+</div>
+
+<div class="row mt-5">
+    <div class="col-6 offset-3">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Résumé</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Date de création</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+               {% for wish in wishes %}
+                <tr>
+                    <td>{{ wish.id }}</td>
+                    <td>{{ wish.title }}</td>
+                    <td>{{ wish.description }}</td>
+                    <td>{{ wish.author }}</td>
+                    <td>{{ wish.dateCreated|date("d/m/Y h") }}h{{ wish.dateCreated|date("i") }}</td>
+                    <td>
+                        <a class="btn btn-outline-info" href="{{ path('app_wish_detail',{id:wish.id}) }}"><i class="fa-solid fa-eye"></i></a>
+                        <a class="btn btn-outline-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')" href="{{ path('app_wish_delete',{id:wish.id}) }}"><i class="fa-solid fa-trash"></i></a>
+                        <a class="btn btn-outline-primary" href="{{ path('app_wish_update',{id:wish.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </td>
+                </tr>
+               {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+
+{% endblock %}

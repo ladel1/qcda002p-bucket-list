@@ -1,0 +1,34 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Wish Detail{% endblock %}
+
+{% block content %}
+
+<div class="row mt-5">
+    <div class="col-6 offset-3">
+        {% for label,messages in app.flashes %}
+            <div class="alert alert-{{label}}">
+              {% for message in messages %}
+                {{message}}
+              {% endfor %}
+            </div>
+        {% endfor %}        
+    </div>
+</div>
+<div class="row mt-5">    
+    <div class="col offset-1">
+        <h2>Wish Detail</h2>
+        <h3>Titre: {{ wish.title }}</h3>
+        <h3>Description: {{ wish.description }}</h3>
+        <small>Auteur: {{ wish.author }}</small>
+        <small>Date de création: {{ wish.dateCreated|date("d/m/Y") }}</small>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col offset-1">
+        <a class="btn btn-primary" href="{{ path("app_wish_update",{id:wish.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')" href="{{ path("app_wish_delete",{id:wish.id}) }}"><i class="fa-solid fa-trash"></i></a>
+    </div>
+</div>
+
+{% endblock %}
