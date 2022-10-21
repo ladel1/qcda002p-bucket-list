@@ -66,14 +66,16 @@ class WishController extends AbstractController
      */
     public function update(Wish $wish,Request $request): Response
     {
-        if($request->isMethod("POST")){
-            $wish->setTitle($request->request->get("title"))
-                 ->setDescription($request->request->get("description"))
-                 ->setAuthor($request->request->get("author"));
+
+        $wishForm = $this->createForm(WishType::class,$wish);
+        $wishForm->handleRequest($request);
+
+        if($wishForm->isSubmitted() && $wishForm->isValid()){
             $this->wishRepository->update();
             return $this->redirectToRoute("app_wish_list");
         }
-        return $this->render('wish/update.html.twig',compact('wish'));
+
+        return $this->render('wish/update.html.twig',["wishForm"=>$wishForm->createView()]);
     }
     
     /**

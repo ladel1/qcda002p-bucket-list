@@ -55,6 +55,11 @@ class Wish
      */
     private $dateCreated;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     */
+    private $category;
+
 
     function __construct()
     {        
@@ -123,6 +128,18 @@ class Wish
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

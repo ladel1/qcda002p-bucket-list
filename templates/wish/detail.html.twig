@@ -20,7 +20,8 @@
         <h2>Wish Detail</h2>
         <h3>Titre: {{ wish.title }}</h3>
         <h3>Description: {{ wish.description }}</h3>
-        <small>Auteur: {{ wish.author }}</small>
+        <small>Auteur: {{ wish.author }}</small><br>
+        <small>Catégorie: {{ wish.category.name }}</small><br>
         <small>Date de création: {{ wish.dateCreated|date("d/m/Y") }}</small>
     </div>
 </div>
