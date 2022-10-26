@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Wish;
 use App\Form\WishType;
 use App\Repository\WishRepository;
+use App\Service\Censurator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +48,7 @@ class WishController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/add", name="add")
      */
-    public function add(Request $request): Response
+    public function add(Request $request,Censurator $censurator): Response
     {
         
         $wish = new Wish();
@@ -56,7 +57,7 @@ class WishController extends AbstractController
         $wishForm->handleRequest($request);
 
         if($wishForm->isSubmitted() && $wishForm->isValid()){
-
+            $wish->setDescription( $censurator->purify2($wish->getDescription())  );
             $this->wishRepository->add($wish,true);
             $this->addFlash("success","Idea successfully added!");
             return $this->redirectToRoute("app_wish_detail",["id"=>$wish->getId()]);
